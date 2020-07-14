@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6F6C506A-FEDD-4C8E-8C0C-F1662A1D8208}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TheSharpFactory.Entity</RootNamespace>
+    <AssemblyName>TheSharpFactory.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\DataExchangeException.cs" />
+    <Compile Include="MainDb\Accounting\Invoice.cs" />
+    <Compile Include="MainDb\Accounting\InvoiceLine.cs" />
+    <Compile Include="MainDb\Accounting\NavPropertyEnums\InvoiceLineNavProperty.cs" />
+    <Compile Include="MainDb\Accounting\NavPropertyEnums\InvoiceNavProperty.cs" />
+    <Compile Include="MainDb\Accounting\PropertyEnums\InvoiceLineProperty.cs" />
+    <Compile Include="MainDb\Accounting\PropertyEnums\InvoiceProperty.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoice.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoiceLine.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoiceLine_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoice_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\DeleteInvoice.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\DeleteInvoiceLine.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\DeleteInvoiceLine_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\DeleteInvoice_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetAllInvoiceLines.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetAllInvoices.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoice.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoiceLine.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoiceLinesByInvoice.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoiceLinesByInvoice_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoiceLinesByTrack.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoiceLinesByTrack_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoiceLine_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoicesByCustomer.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoicesByCustomer_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoicesByEmployee.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoicesByEmployee_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\GetInvoice_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\InsertInvoice.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\InsertInvoiceLine.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\InsertInvoiceLine_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\InsertInvoice_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\UpdateInvoice.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\UpdateInvoiceLine.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\UpdateInvoiceLine_Request.cs" />
+    <Compile Include="MainDb\Accounting\StoredProcs\UpdateInvoice_Request.cs" />
+    <Compile Include="MainDb\Media\Album.cs" />
+    <Compile Include="MainDb\Media\Artist.cs" />
+    <Compile Include="MainDb\Media\Genre.cs" />
+    <Compile Include="MainDb\Media\MediaType.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\AlbumNavProperty.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\ArtistNavProperty.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\GenreNavProperty.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\MediaTypeNavProperty.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\PlaylistNavProperty.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\PlaylistTrackNavProperty.cs" />
+    <Compile Include="MainDb\Media\NavPropertyEnums\TrackNavProperty.cs" />
+    <Compile Include="MainDb\Media\Playlist.cs" />
+    <Compile Include="MainDb\Media\PlaylistTrack.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\AlbumProperty.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\ArtistProperty.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\GenreProperty.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\MediaTypeProperty.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\PlaylistProperty.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\PlaylistTrackProperty.cs" />
+    <Compile Include="MainDb\Media\PropertyEnums\TrackProperty.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckAlbum.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckAlbum_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckGenre.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckGenre_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckMediaType.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckMediaType_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckPlaylist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckPlaylistTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckPlaylistTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckPlaylist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\CheckTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteAlbum.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteAlbum_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteGenre.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteGenre_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteMediaType.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteMediaType_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeletePlaylist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeletePlaylistTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeletePlaylistTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeletePlaylist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\DeleteTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAlbum.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAlbumsByArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAlbumsByArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAlbum_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllAlbums.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllArtists.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllGenres.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllMediaTypes.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllPlaylists.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllPlaylistTracks.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetAllTracks.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetGenre.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetGenre_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetMediaType.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetMediaType_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetPlaylist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetPlaylistsByTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetPlaylistsByTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetPlaylistTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetPlaylistTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetPlaylist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByAlbum.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByAlbum_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByGenre.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByGenre_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByInvoice.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByInvoice_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByMediaType.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByMediaType_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByPlaylist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTracksByPlaylist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\GetTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertAlbum.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertAlbum_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertGenre.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertGenre_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertMediaType.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertMediaType_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertPlaylist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertPlaylistTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertPlaylistTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertPlaylist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\InsertTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateAlbum.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateAlbum_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateArtist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateArtist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateGenre.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateGenre_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateMediaType.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateMediaType_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdatePlaylist.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdatePlaylistTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdatePlaylistTrack_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdatePlaylist_Request.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateTrack.cs" />
+    <Compile Include="MainDb\Media\StoredProcs\UpdateTrack_Request.cs" />
+    <Compile Include="MainDb\Media\Track.cs" />
+    <Compile Include="MainDb\People\Customer.cs" />
+    <Compile Include="MainDb\People\Employee.cs" />
+    <Compile Include="MainDb\People\NavPropertyEnums\CustomerNavProperty.cs" />
+    <Compile Include="MainDb\People\NavPropertyEnums\EmployeeNavProperty.cs" />
+    <Compile Include="MainDb\People\PropertyEnums\CustomerProperty.cs" />
+    <Compile Include="MainDb\People\PropertyEnums\EmployeeProperty.cs" />
+    <Compile Include="MainDb\People\StoredProcs\CheckCustomer.cs" />
+    <Compile Include="MainDb\People\StoredProcs\CheckCustomer_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\CheckEmployee.cs" />
+    <Compile Include="MainDb\People\StoredProcs\CheckEmployee_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\DeleteCustomer.cs" />
+    <Compile Include="MainDb\People\StoredProcs\DeleteCustomer_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\DeleteEmployee.cs" />
+    <Compile Include="MainDb\People\StoredProcs\DeleteEmployee_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetAllCustomers.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetAllEmployees.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetCustomer.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetCustomersBySupportRep.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetCustomersBySupportRep_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetCustomer_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetEmployee.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetEmployeeReportsTo.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetEmployeeReportsTo_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetEmployeesByReportsTo.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetEmployeesByReportsTo_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\GetEmployee_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\InsertCustomer.cs" />
+    <Compile Include="MainDb\People\StoredProcs\InsertCustomer_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\InsertEmployee.cs" />
+    <Compile Include="MainDb\People\StoredProcs\InsertEmployee_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\UpdateCustomer.cs" />
+    <Compile Include="MainDb\People\StoredProcs\UpdateCustomer_Request.cs" />
+    <Compile Include="MainDb\People\StoredProcs\UpdateEmployee.cs" />
+    <Compile Include="MainDb\People\StoredProcs\UpdateEmployee_Request.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

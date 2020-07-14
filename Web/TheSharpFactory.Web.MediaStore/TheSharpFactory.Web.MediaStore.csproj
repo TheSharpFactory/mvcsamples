@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>TheSharpFactory.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ApiClient\TheSharpFactory.Web.ApiClient\TheSharpFactory.Web.ApiClient.csproj" />
+    <ProjectReference Include="..\..\DataAccess\TheSharpFactory.Entity\TheSharpFactory.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

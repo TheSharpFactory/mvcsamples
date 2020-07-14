@@ -1,0 +1,195 @@
+{
+  "CommonSettings": {
+    "UseRootNSInProjectName": 1,
+    "RootNamespace": "TheSharpFactory",
+    "DependenciesFolder": "DataAccess",
+    "IndentSize": 4,
+    "TargetFramework": 4
+  },
+  "CommonLayers": {
+    "Repository": {"Project":"Repository","Namespace":"Repository.Common"},
+    "RepoContainer": {"Project":"Repository","Namespace":"Repository.Container"},
+    "IRepoContainer": {"Project":"Repository.Interfaces","Namespace":"Repository.Container.Interfaces"},
+    "Query": {"Project":"Query","Namespace":"Query"},
+    "Exceptions": {"Project":"Entity","Namespace":"Exceptions"}
+  },
+  "Models": [
+    {
+      "Name": "MainDb",
+      "ConInfo": {"Server":"SHARPFACTORY2","Database":"Chinook","User":"","Password":"","DisableIntegratedSecurity":false},
+      "Layers": {
+        "Entity": {"Project":"Entity","Namespace":"Entity"},
+        "PropEnum": {"Project":"Entity","Namespace":"Entity"},
+        "NavPropEnum": {"Project":"Entity","Namespace":"Entity"},
+        "EntityUtil": {"Project":"Entity.Utils","Namespace":"Entity.Utils"},
+        "Repository": {"Project":"Repository","Namespace":"Repository"},
+        "IRepository": {"Project":"Repository.Interfaces","Namespace":"Repository.Interfaces"}
+      },
+      "Categories": [
+        {
+          "Name": "Entities",
+          "Schemas": [
+            {
+              "Name": "Accounting",
+              "Type": 1,
+              "Entities": [
+                {"SN":"Invoice","HId":1,"PK":{"N":"PK__Invoice__D796AAB51A14E395","Ps":[{"N":"InvoiceId"}]},"Ps":[{"SN":"InvoiceId","TId":13,"Ide":1},{"SN":"CustomerId","TId":13},{"SN":"InvoiceDate","TId":6},{"SN":"BillingAddress","TId":18,"Nul":1,"S":70},{"SN":"BillingCity","TId":18,"Nul":1,"S":40},{"SN":"BillingState","TId":18,"Nul":1,"S":40},{"SN":"BillingCountry","TId":18,"Nul":1,"S":40},{"SN":"BillingPostalCode","TId":18,"Nul":1,"S":10},{"SN":"Total","TId":9}],"NPs":[{"N":"Customer","Mul":"1","End":2},{"FKId":1,"N":"InvoiceLines","Mul":"*","End":1}]},
+                {"SN":"InvoiceLine","HId":1,"PK":{"N":"PK__InvoiceL__0D760AD91DE57479","Ps":[{"N":"InvoiceLineId"}]},"Ps":[{"SN":"InvoiceLineId","TId":13,"Ide":1},{"SN":"InvoiceId","TId":13},{"SN":"TrackId","TId":13},{"SN":"UnitPrice","TId":9},{"SN":"Quantity","TId":13}],"NPs":[{"FKId":1,"N":"Invoice","Mul":"1","End":2},{"FKId":2,"N":"Track","Mul":"1","End":2}]}
+              ]
+            },
+            {
+              "Name": "Media",
+              "Type": 1,
+              "Entities": [
+                {"SN":"Album","HId":1,"PK":{"N":"PK__Album__97B4BE370AD2A005","Ps":[{"N":"AlbumId"}]},"Ps":[{"SN":"AlbumId","TId":13,"Ide":1},{"SN":"Title","TId":18,"S":160},{"SN":"ArtistId","TId":13}],"NPs":[{"FKId":4,"N":"Artist","Mul":"1","End":2},{"FKId":6,"N":"Tracks","Mul":"*","End":1}]},
+                {"SN":"Artist","HId":1,"PK":{"N":"PK__Artist__25706B5007020F21","Ps":[{"N":"ArtistId"}]},"Ps":[{"SN":"ArtistId","TId":13,"Ide":1},{"SN":"Name","TId":18,"S":120}],"NPs":[{"FKId":4,"N":"Albums","Mul":"*","End":1}]},
+                {"SN":"Genre","HId":1,"PK":{"N":"PK__Genre__0385057E7F60ED59","Ps":[{"N":"GenreId"}]},"Ps":[{"SN":"GenreId","TId":13,"Ide":1},{"SN":"Name","TId":18,"S":120}],"NPs":[{"FKId":7,"N":"Tracks","Mul":"*","End":1}]},
+                {"SN":"MediaType","HId":1,"PK":{"N":"PK__MediaTyp__0E6FCB7203317E3D","Ps":[{"N":"MediaTypeId"}]},"Ps":[{"SN":"MediaTypeId","TId":13,"Ide":1},{"SN":"Name","TId":18,"S":120}],"NPs":[{"FKId":8,"N":"Tracks","Mul":"*","End":1}]},
+                {"SN":"Playlist","HId":1,"PK":{"N":"PK__Playlist__B30167A021B6055D","Ps":[{"N":"PlaylistId"}]},"Ps":[{"SN":"PlaylistId","TId":13,"Ide":1},{"SN":"Name","TId":18,"S":120}],"NPs":[{"FKId":3,"N":"PlaylistTracks","Mul":"*","End":1}]},
+                {"SN":"PlaylistTrack","PK":{"N":"PK__Playlist__A4A6282E25869641","Ps":[{"N":"PlaylistId"},{"N":"TrackId"}]},"Ps":[{"SN":"PlaylistId","TId":13},{"SN":"TrackId","TId":13}],"NPs":[{"FKId":3,"N":"Playlist","Mul":"1","End":2},{"FKId":5,"N":"Track","Mul":"1","End":2}]},
+                {"SN":"Track","HId":1,"PK":{"N":"PK__Track__7A74F8E00EA330E9","Ps":[{"N":"TrackId"}]},"Ps":[{"SN":"TrackId","TId":13,"Ide":1},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1},{"SN":"MediaTypeId","TId":13},{"SN":"GenreId","TId":13,"Nul":1},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13},{"SN":"Bytes","TId":13,"Nul":1},{"SN":"UnitPrice","TId":9}],"NPs":[{"FKId":2,"N":"InvoiceLines","Mul":"*","End":1},{"FKId":5,"N":"PlaylistTracks","Mul":"*","End":1},{"FKId":6,"N":"Album","Mul":"1","End":2},{"FKId":7,"N":"Genre","Mul":"1","End":2},{"FKId":8,"N":"MediaType","Mul":"1","End":2}]}
+              ]
+            },
+            {
+              "Name": "People",
+              "Type": 1,
+              "Entities": [
+                {"SN":"Customer","HId":1,"PK":{"N":"PK__Customer__A4AE64D8164452B1","Ps":[{"N":"CustomerId"}]},"Ps":[{"SN":"CustomerId","TId":13,"Ide":1},{"SN":"FirstName","TId":18,"S":20},{"SN":"LastName","TId":18,"S":20},{"SN":"Company","TId":18,"Nul":1,"S":80},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"S":60},{"SN":"SupportRepId","TId":13,"Nul":1}],"NPs":[{"N":"Invoices","Mul":"*","End":1},{"FKId":9,"N":"Employee","Mul":"1","End":2}]},
+                {"SN":"Employee","HId":1,"PK":{"N":"PK__Employee__7AD04F111273C1CD","Ps":[{"N":"EmployeeId"}]},"Ps":[{"SN":"EmployeeId","TId":13,"Ide":1},{"SN":"LastName","TId":18,"S":20},{"SN":"FirstName","TId":18,"S":20},{"SN":"Title","TId":18,"Nul":1,"S":30},{"SN":"ReportsTo","TId":13,"Nul":1},{"SN":"BirthDate","TId":6,"Nul":1},{"SN":"HireDate","TId":6,"Nul":1},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"Nul":1,"S":60}],"NPs":[{"FKId":9,"N":"Customers","Mul":"*","End":1},{"FKId":10,"N":"Employee1","Mul":"1","End":2}]}
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Views",
+          "Schemas": []
+        },
+        {
+          "Name": "StoredProcs",
+          "Schemas": [
+            {
+              "Name": "Accounting",
+              "Type": 3,
+              "StoredProcs": [
+                {"SN":"CheckInvoice","En":{"SN":"CheckInvoice_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckInvoiceLine","En":{"SN":"CheckInvoiceLine_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@InvoiceLineId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteInvoice","Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteInvoiceLine","Par":[{"SN":"@InvoiceLineId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetAllInvoiceLines","En":{"SN":"GetAllInvoiceLines_Result","Ps":[{"SN":"InvoiceLineId","TId":13,"S":4},{"SN":"InvoiceId","TId":13,"S":4},{"SN":"TrackId","TId":13,"S":4},{"SN":"UnitPrice","TId":9,"S":17},{"SN":"Quantity","TId":13,"S":4}]}},
+                {"SN":"GetAllInvoices","En":{"SN":"GetAllInvoices_Result","Ps":[{"SN":"InvoiceId","TId":13,"S":4},{"SN":"CustomerId","TId":13,"S":4},{"SN":"InvoiceDate","TId":6,"S":8},{"SN":"BillingAddress","TId":18,"Nul":1,"S":70},{"SN":"BillingCity","TId":18,"Nul":1,"S":40},{"SN":"BillingState","TId":18,"Nul":1,"S":40},{"SN":"BillingCountry","TId":18,"Nul":1,"S":40},{"SN":"BillingPostalCode","TId":18,"Nul":1,"S":10},{"SN":"Total","TId":9,"S":17}]}},
+                {"SN":"GetInvoice","En":{"SN":"GetInvoice_Result","Ps":[{"SN":"InvoiceId","TId":13,"S":4},{"SN":"CustomerId","TId":13,"S":4},{"SN":"InvoiceDate","TId":6,"S":8},{"SN":"BillingAddress","TId":18,"Nul":1,"S":70},{"SN":"BillingCity","TId":18,"Nul":1,"S":40},{"SN":"BillingState","TId":18,"Nul":1,"S":40},{"SN":"BillingCountry","TId":18,"Nul":1,"S":40},{"SN":"BillingPostalCode","TId":18,"Nul":1,"S":10},{"SN":"Total","TId":9,"S":17}]},"Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetInvoiceLine","En":{"SN":"GetInvoiceLine_Result","Ps":[{"SN":"InvoiceLineId","TId":13,"S":4},{"SN":"InvoiceId","TId":13,"S":4},{"SN":"TrackId","TId":13,"S":4},{"SN":"UnitPrice","TId":9,"S":17},{"SN":"Quantity","TId":13,"S":4}]},"Par":[{"SN":"@InvoiceLineId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetInvoiceLinesByInvoice","En":{"SN":"GetInvoiceLinesByInvoice_Result","Ps":[{"SN":"InvoiceLineId","TId":13,"S":4},{"SN":"InvoiceId","TId":13,"S":4},{"SN":"TrackId","TId":13,"S":4},{"SN":"UnitPrice","TId":9,"S":17},{"SN":"Quantity","TId":13,"S":4}]},"Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetInvoiceLinesByTrack","En":{"SN":"GetInvoiceLinesByTrack_Result","Ps":[{"SN":"InvoiceLineId","TId":13,"S":4},{"SN":"InvoiceId","TId":13,"S":4},{"SN":"TrackId","TId":13,"S":4},{"SN":"UnitPrice","TId":9,"S":17},{"SN":"Quantity","TId":13,"S":4}]},"Par":[{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetInvoicesByCustomer","En":{"SN":"GetInvoicesByCustomer_Result","Ps":[{"SN":"InvoiceId","TId":13,"S":4},{"SN":"CustomerId","TId":13,"S":4},{"SN":"InvoiceDate","TId":6,"S":8},{"SN":"BillingAddress","TId":18,"Nul":1,"S":70},{"SN":"BillingCity","TId":18,"Nul":1,"S":40},{"SN":"BillingState","TId":18,"Nul":1,"S":40},{"SN":"BillingCountry","TId":18,"Nul":1,"S":40},{"SN":"BillingPostalCode","TId":18,"Nul":1,"S":10},{"SN":"Total","TId":9,"S":17}]},"Par":[{"SN":"@CustomerId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetInvoicesByEmployee","En":{"SN":"GetInvoicesByEmployee_Result","Ps":[{"SN":"InvoiceId","TId":13,"S":4},{"SN":"CustomerId","TId":13,"S":4},{"SN":"InvoiceDate","TId":6,"S":8},{"SN":"BillingAddress","TId":18,"Nul":1,"S":70},{"SN":"BillingCity","TId":18,"Nul":1,"S":40},{"SN":"BillingState","TId":18,"Nul":1,"S":40},{"SN":"BillingCountry","TId":18,"Nul":1,"S":40},{"SN":"BillingPostalCode","TId":18,"Nul":1,"S":10},{"SN":"Total","TId":9,"S":17}]},"Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"InsertInvoice","Par":[{"SN":"@CustomerId","TId":13,"Nul":1,"M":0},{"SN":"@InvoiceDate","TId":6,"Nul":1,"M":0},{"SN":"@BillingAddress","TId":18,"Nul":1,"M":0,"S":70},{"SN":"@BillingCity","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@BillingState","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@BillingCountry","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@BillingPostalCode","TId":18,"Nul":1,"M":0,"S":10},{"SN":"@Total","TId":9,"Nul":1,"M":0},{"SN":"@InvoiceId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertInvoiceLine","Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0},{"SN":"@UnitPrice","TId":9,"Nul":1,"M":0},{"SN":"@Quantity","TId":13,"Nul":1,"M":0},{"SN":"@InvoiceLineId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"UpdateInvoice","Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0},{"SN":"@CustomerId","TId":13,"Nul":1,"M":0},{"SN":"@InvoiceDate","TId":6,"Nul":1,"M":0},{"SN":"@BillingAddress","TId":18,"Nul":1,"M":0,"S":70},{"SN":"@BillingCity","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@BillingState","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@BillingCountry","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@BillingPostalCode","TId":18,"Nul":1,"M":0,"S":10},{"SN":"@Total","TId":9,"Nul":1,"M":0}]},
+                {"SN":"UpdateInvoiceLine","Par":[{"SN":"@InvoiceLineId","TId":13,"Nul":1,"M":0},{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0},{"SN":"@UnitPrice","TId":9,"Nul":1,"M":0},{"SN":"@Quantity","TId":13,"Nul":1,"M":0}]}
+              ]
+            },
+            {
+              "Name": "Media",
+              "Type": 3,
+              "StoredProcs": [
+                {"SN":"CheckAlbum","En":{"SN":"CheckAlbum_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@AlbumId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckArtist","En":{"SN":"CheckArtist_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@ArtistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckGenre","En":{"SN":"CheckGenre_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@GenreId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckMediaType","En":{"SN":"CheckMediaType_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckPlaylist","En":{"SN":"CheckPlaylist_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckPlaylistTrack","En":{"SN":"CheckPlaylistTrack_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckTrack","En":{"SN":"CheckTrack_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteAlbum","Par":[{"SN":"@AlbumId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteArtist","Par":[{"SN":"@ArtistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteGenre","Par":[{"SN":"@GenreId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteMediaType","Par":[{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeletePlaylist","Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeletePlaylistTrack","Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteTrack","Par":[{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetAlbum","En":{"SN":"GetAlbum_Result","Ps":[{"SN":"AlbumId","TId":13,"S":4},{"SN":"Title","TId":18,"S":160},{"SN":"ArtistId","TId":13,"S":4}]},"Par":[{"SN":"@AlbumId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetAlbumsByArtist","En":{"SN":"GetAlbumsByArtist_Result","Ps":[{"SN":"AlbumId","TId":13,"S":4},{"SN":"Title","TId":18,"S":160},{"SN":"ArtistId","TId":13,"S":4}]},"Par":[{"SN":"@ArtistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetAllAlbums","En":{"SN":"GetAllAlbums_Result","Ps":[{"SN":"AlbumId","TId":13,"S":4},{"SN":"Title","TId":18,"S":160},{"SN":"ArtistId","TId":13,"S":4}]}},
+                {"SN":"GetAllArtists","En":{"SN":"GetAllArtists_Result","Ps":[{"SN":"ArtistId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]}},
+                {"SN":"GetAllGenres","En":{"SN":"GetAllGenres_Result","Ps":[{"SN":"GenreId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]}},
+                {"SN":"GetAllMediaTypes","En":{"SN":"GetAllMediaTypes_Result","Ps":[{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]}},
+                {"SN":"GetAllPlaylists","En":{"SN":"GetAllPlaylists_Result","Ps":[{"SN":"PlaylistId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]}},
+                {"SN":"GetAllPlaylistTracks","En":{"SN":"GetAllPlaylistTracks_Result","Ps":[{"SN":"PlaylistId","TId":13,"S":4},{"SN":"TrackId","TId":13,"S":4}]}},
+                {"SN":"GetAllTracks","En":{"SN":"GetAllTracks_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]}},
+                {"SN":"GetArtist","En":{"SN":"GetArtist_Result","Ps":[{"SN":"ArtistId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]},"Par":[{"SN":"@ArtistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetGenre","En":{"SN":"GetGenre_Result","Ps":[{"SN":"GenreId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]},"Par":[{"SN":"@GenreId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetMediaType","En":{"SN":"GetMediaType_Result","Ps":[{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]},"Par":[{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetPlaylist","En":{"SN":"GetPlaylist_Result","Ps":[{"SN":"PlaylistId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]},"Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetPlaylistsByTrack","En":{"SN":"GetPlaylistsByTrack_Result","Ps":[{"SN":"PlaylistId","TId":13,"S":4},{"SN":"Name","TId":18,"S":120}]},"Par":[{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetPlaylistTrack","En":{"SN":"GetPlaylistTrack_Result","Ps":[{"SN":"PlaylistId","TId":13,"S":4},{"SN":"TrackId","TId":13,"S":4}]},"Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTrack","En":{"SN":"GetTrack_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTracksByAlbum","En":{"SN":"GetTracksByAlbum_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@AlbumId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTracksByArtist","En":{"SN":"GetTracksByArtist_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@ArtistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTracksByGenre","En":{"SN":"GetTracksByGenre_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@GenreId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTracksByInvoice","En":{"SN":"GetTracksByInvoice_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@InvoiceId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTracksByMediaType","En":{"SN":"GetTracksByMediaType_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetTracksByPlaylist","En":{"SN":"GetTracksByPlaylist_Result","Ps":[{"SN":"TrackId","TId":13,"S":4},{"SN":"Name","TId":18,"S":200},{"SN":"AlbumId","TId":13,"Nul":1,"S":4},{"SN":"MediaTypeId","TId":13,"S":4},{"SN":"GenreId","TId":13,"Nul":1,"S":4},{"SN":"Composer","TId":18,"Nul":1,"S":220},{"SN":"Milliseconds","TId":13,"S":4},{"SN":"Bytes","TId":13,"Nul":1,"S":4},{"SN":"UnitPrice","TId":9,"S":17}]},"Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"InsertAlbum","Par":[{"SN":"@Title","TId":18,"Nul":1,"M":0,"S":160},{"SN":"@ArtistId","TId":13,"Nul":1,"M":0},{"SN":"@AlbumId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertArtist","Par":[{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120},{"SN":"@ArtistId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertGenre","Par":[{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120},{"SN":"@GenreId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertMediaType","Par":[{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120},{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertPlaylist","Par":[{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120},{"SN":"@PlaylistId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertPlaylistTrack","Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"InsertTrack","Par":[{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":200},{"SN":"@AlbumId","TId":13,"Nul":1,"M":0},{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0},{"SN":"@GenreId","TId":13,"Nul":1,"M":0},{"SN":"@Composer","TId":18,"Nul":1,"M":0,"S":220},{"SN":"@Milliseconds","TId":13,"Nul":1,"M":0},{"SN":"@Bytes","TId":13,"Nul":1,"M":0},{"SN":"@UnitPrice","TId":9,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"UpdateAlbum","Par":[{"SN":"@AlbumId","TId":13,"Nul":1,"M":0},{"SN":"@Title","TId":18,"Nul":1,"M":0,"S":160},{"SN":"@ArtistId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"UpdateArtist","Par":[{"SN":"@ArtistId","TId":13,"Nul":1,"M":0},{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120}]},
+                {"SN":"UpdateGenre","Par":[{"SN":"@GenreId","TId":13,"Nul":1,"M":0},{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120}]},
+                {"SN":"UpdateMediaType","Par":[{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0},{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120}]},
+                {"SN":"UpdatePlaylist","Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0},{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":120}]},
+                {"SN":"UpdatePlaylistTrack","Par":[{"SN":"@PlaylistId","TId":13,"Nul":1,"M":0},{"SN":"@TrackId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"UpdateTrack","Par":[{"SN":"@TrackId","TId":13,"Nul":1,"M":0},{"SN":"@Name","TId":18,"Nul":1,"M":0,"S":200},{"SN":"@AlbumId","TId":13,"Nul":1,"M":0},{"SN":"@MediaTypeId","TId":13,"Nul":1,"M":0},{"SN":"@GenreId","TId":13,"Nul":1,"M":0},{"SN":"@Composer","TId":18,"Nul":1,"M":0,"S":220},{"SN":"@Milliseconds","TId":13,"Nul":1,"M":0},{"SN":"@Bytes","TId":13,"Nul":1,"M":0},{"SN":"@UnitPrice","TId":9,"Nul":1,"M":0}]}
+              ]
+            },
+            {
+              "Name": "People",
+              "Type": 3,
+              "StoredProcs": [
+                {"SN":"CheckCustomer","En":{"SN":"CheckCustomer_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@CustomerId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"CheckEmployee","En":{"SN":"CheckEmployee_Result","Ps":[{"SN":"","TId":3,"Nul":1,"S":1}]},"Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteCustomer","Par":[{"SN":"@CustomerId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"DeleteEmployee","Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetAllCustomers","En":{"SN":"GetAllCustomers_Result","Ps":[{"SN":"CustomerId","TId":13,"S":4},{"SN":"FirstName","TId":18,"S":20},{"SN":"LastName","TId":18,"S":20},{"SN":"Company","TId":18,"Nul":1,"S":80},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"S":60},{"SN":"SupportRepId","TId":13,"Nul":1,"S":4}]}},
+                {"SN":"GetAllEmployees","En":{"SN":"GetAllEmployees_Result","Ps":[{"SN":"EmployeeId","TId":13,"S":4},{"SN":"LastName","TId":18,"S":20},{"SN":"FirstName","TId":18,"S":20},{"SN":"Title","TId":18,"Nul":1,"S":30},{"SN":"ReportsTo","TId":13,"Nul":1,"S":4},{"SN":"BirthDate","TId":6,"Nul":1,"S":8},{"SN":"HireDate","TId":6,"Nul":1,"S":8},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"Nul":1,"S":60}]}},
+                {"SN":"GetCustomer","En":{"SN":"GetCustomer_Result","Ps":[{"SN":"CustomerId","TId":13,"S":4},{"SN":"FirstName","TId":18,"S":20},{"SN":"LastName","TId":18,"S":20},{"SN":"Company","TId":18,"Nul":1,"S":80},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"S":60},{"SN":"SupportRepId","TId":13,"Nul":1,"S":4}]},"Par":[{"SN":"@CustomerId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetCustomersBySupportRep","En":{"SN":"GetCustomersBySupportRep_Result","Ps":[{"SN":"CustomerId","TId":13,"S":4},{"SN":"FirstName","TId":18,"S":20},{"SN":"LastName","TId":18,"S":20},{"SN":"Company","TId":18,"Nul":1,"S":80},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"S":60},{"SN":"SupportRepId","TId":13,"Nul":1,"S":4}]},"Par":[{"SN":"@SupportRepId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetEmployee","En":{"SN":"GetEmployee_Result","Ps":[{"SN":"EmployeeId","TId":13,"S":4},{"SN":"LastName","TId":18,"S":20},{"SN":"FirstName","TId":18,"S":20},{"SN":"Title","TId":18,"Nul":1,"S":30},{"SN":"ReportsTo","TId":13,"Nul":1,"S":4},{"SN":"BirthDate","TId":6,"Nul":1,"S":8},{"SN":"HireDate","TId":6,"Nul":1,"S":8},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"Nul":1,"S":60}]},"Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetEmployeeReportsTo","En":{"SN":"GetEmployeeReportsTo_Result","Ps":[{"SN":"EmployeeId","TId":13,"S":4},{"SN":"LastName","TId":18,"S":20},{"SN":"FirstName","TId":18,"S":20},{"SN":"Title","TId":18,"Nul":1,"S":30},{"SN":"ReportsTo","TId":13,"Nul":1,"S":4},{"SN":"BirthDate","TId":6,"Nul":1,"S":8},{"SN":"HireDate","TId":6,"Nul":1,"S":8},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"Nul":1,"S":60}]},"Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"GetEmployeesByReportsTo","En":{"SN":"GetEmployeesByReportsTo_Result","Ps":[{"SN":"EmployeeId","TId":13,"S":4},{"SN":"LastName","TId":18,"S":20},{"SN":"FirstName","TId":18,"S":20},{"SN":"Title","TId":18,"Nul":1,"S":30},{"SN":"ReportsTo","TId":13,"Nul":1,"S":4},{"SN":"BirthDate","TId":6,"Nul":1,"S":8},{"SN":"HireDate","TId":6,"Nul":1,"S":8},{"SN":"Address","TId":18,"Nul":1,"S":70},{"SN":"City","TId":18,"Nul":1,"S":40},{"SN":"State","TId":18,"Nul":1,"S":40},{"SN":"Country","TId":18,"Nul":1,"S":40},{"SN":"PostalCode","TId":18,"Nul":1,"S":10},{"SN":"Phone","TId":18,"Nul":1,"S":24},{"SN":"Fax","TId":18,"Nul":1,"S":24},{"SN":"Email","TId":18,"Nul":1,"S":60}]},"Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"InsertCustomer","Par":[{"SN":"@FirstName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@LastName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@Company","TId":18,"Nul":1,"M":0,"S":80},{"SN":"@Address","TId":18,"Nul":1,"M":0,"S":70},{"SN":"@City","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@State","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@Country","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@PostalCode","TId":18,"Nul":1,"M":0,"S":10},{"SN":"@Phone","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Fax","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Email","TId":18,"Nul":1,"M":0,"S":60},{"SN":"@SupportRepId","TId":13,"Nul":1,"M":0},{"SN":"@CustomerId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"InsertEmployee","Par":[{"SN":"@LastName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@FirstName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@Title","TId":18,"Nul":1,"M":0,"S":30},{"SN":"@ReportsTo","TId":13,"Nul":1,"M":0},{"SN":"@BirthDate","TId":6,"Nul":1,"M":0},{"SN":"@HireDate","TId":6,"Nul":1,"M":0},{"SN":"@Address","TId":18,"Nul":1,"M":0,"S":70},{"SN":"@City","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@State","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@Country","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@PostalCode","TId":18,"Nul":1,"M":0,"S":10},{"SN":"@Phone","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Fax","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Email","TId":18,"Nul":1,"M":0,"S":60},{"SN":"@EmployeeId","TId":13,"Nul":1,"M":2}]},
+                {"SN":"UpdateCustomer","Par":[{"SN":"@CustomerId","TId":13,"Nul":1,"M":0},{"SN":"@FirstName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@LastName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@Company","TId":18,"Nul":1,"M":0,"S":80},{"SN":"@Address","TId":18,"Nul":1,"M":0,"S":70},{"SN":"@City","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@State","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@Country","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@PostalCode","TId":18,"Nul":1,"M":0,"S":10},{"SN":"@Phone","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Fax","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Email","TId":18,"Nul":1,"M":0,"S":60},{"SN":"@SupportRepId","TId":13,"Nul":1,"M":0}]},
+                {"SN":"UpdateEmployee","Par":[{"SN":"@EmployeeId","TId":13,"Nul":1,"M":0},{"SN":"@LastName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@FirstName","TId":18,"Nul":1,"M":0,"S":20},{"SN":"@Title","TId":18,"Nul":1,"M":0,"S":30},{"SN":"@ReportsTo","TId":13,"Nul":1,"M":0},{"SN":"@BirthDate","TId":6,"Nul":1,"M":0},{"SN":"@HireDate","TId":6,"Nul":1,"M":0},{"SN":"@Address","TId":18,"Nul":1,"M":0,"S":70},{"SN":"@City","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@State","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@Country","TId":18,"Nul":1,"M":0,"S":40},{"SN":"@PostalCode","TId":18,"Nul":1,"M":0,"S":10},{"SN":"@Phone","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Fax","TId":18,"Nul":1,"M":0,"S":24},{"SN":"@Email","TId":18,"Nul":1,"M":0,"S":60}]}
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Functions",
+          "Schemas": []
+        },
+        {
+          "Name": "Sequences",
+          "Schemas": []
+        }
+      ],
+      "FKeys": [
+        {"N":"FK_Invoice_Customer","PT":"Customer","PSc":"People","PKey":"PK__Customer__A4AE64D8164452B1","PMu":"1","CT":"Invoice","CSc":"Accounting","CMu":"*","FKParts":[{"PCol":"CustomerId","CCol":"CustomerId"}]},
+        {"Id":1,"N":"FK_InvoiceLine__Invoice","PT":"Invoice","PSc":"Accounting","PKey":"PK__Invoice__D796AAB51A14E395","PMu":"1","CT":"InvoiceLine","CSc":"Accounting","CMu":"*","FKParts":[{"PCol":"InvoiceId","CCol":"InvoiceId"}]},
+        {"Id":2,"N":"FK_InvoiceLine_Track","PT":"Track","PSc":"Media","PKey":"PK__Track__7A74F8E00EA330E9","PMu":"1","CT":"InvoiceLine","CSc":"Accounting","CMu":"*","FKParts":[{"PCol":"TrackId","CCol":"TrackId"}]},
+        {"Id":3,"N":"FK__PlaylistTrack__Playlist","PT":"Playlist","PSc":"Media","PKey":"PK__Playlist__B30167A021B6055D","PMu":"1","CT":"PlaylistTrack","CSc":"Media","CMu":"*","FKParts":[{"PCol":"PlaylistId","CCol":"PlaylistId"}]},
+        {"Id":4,"N":"FK_Album_Artist","PT":"Artist","PSc":"Media","PKey":"PK__Artist__25706B5007020F21","PMu":"1","CT":"Album","CSc":"Media","CMu":"*","FKParts":[{"PCol":"ArtistId","CCol":"ArtistId"}]},
+        {"Id":5,"N":"FK_PlaylistTrack_Track","PT":"Track","PSc":"Media","PKey":"PK__Track__7A74F8E00EA330E9","PMu":"1","CT":"PlaylistTrack","CSc":"Media","CMu":"*","FKParts":[{"PCol":"TrackId","CCol":"TrackId"}]},
+        {"Id":6,"N":"FK_Track_Album","PT":"Album","PSc":"Media","PKey":"PK__Album__97B4BE370AD2A005","PMu":"1","CT":"Track","CSc":"Media","CMu":"*","FKParts":[{"PCol":"AlbumId","CCol":"AlbumId"}]},
+        {"Id":7,"N":"FK_Track_Genre","PT":"Genre","PSc":"Media","PKey":"PK__Genre__0385057E7F60ED59","PMu":"1","CT":"Track","CSc":"Media","CMu":"*","FKParts":[{"PCol":"GenreId","CCol":"GenreId"}]},
+        {"Id":8,"N":"FK_Track_MediaType","PT":"MediaType","PSc":"Media","PKey":"PK__MediaTyp__0E6FCB7203317E3D","PMu":"1","CT":"Track","CSc":"Media","CMu":"*","FKParts":[{"PCol":"MediaTypeId","CCol":"MediaTypeId"}]},
+        {"Id":9,"N":"FK_Customer_SupportRep","PT":"Employee","PSc":"People","PKey":"PK__Employee__7AD04F111273C1CD","PMu":"1","CT":"Customer","CSc":"People","CMu":"*","FKParts":[{"PCol":"EmployeeId","CCol":"SupportRepId"}]},
+        {"Id":10,"N":"FK_Employee_ReportTo","PT":"Employee","PSc":"People","PKey":"PK__Employee__7AD04F111273C1CD","PMu":"1","CT":"Employee","CSc":"People","CMu":"*","FKParts":[{"PCol":"EmployeeId","CCol":"ReportsTo"}]}
+      ]
+    }
+  ]
+}
