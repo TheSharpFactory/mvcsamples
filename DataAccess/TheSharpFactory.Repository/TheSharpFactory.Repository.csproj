@@ -55,6 +55,7 @@
     <Compile Include="Lookups\RepoLookup.cs" />
     <Compile Include="MainDb\Accounting\InvoiceLineRepository.cs" />
     <Compile Include="MainDb\Accounting\InvoiceRepository.cs" />
+    <Compile Include="MainDb\Accounting\OrderDetailRepository.cs" />
     <Compile Include="MainDb\Accounting\StoredProcs\StoredProcRepository.cs" />
     <Compile Include="MainDb\Media\AlbumRepository.cs" />
     <Compile Include="MainDb\Media\ArtistRepository.cs" />

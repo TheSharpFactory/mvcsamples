@@ -34,7 +34,8 @@
               "Type": 1,
               "Entities": [
                 {"SN":"Invoice","HId":1,"PK":{"N":"PK__Invoice__D796AAB51A14E395","Ps":[{"N":"InvoiceId"}]},"Ps":[{"SN":"InvoiceId","TId":13,"Ide":1},{"SN":"CustomerId","TId":13},{"SN":"InvoiceDate","TId":6},{"SN":"BillingAddress","TId":18,"Nul":1,"S":70},{"SN":"BillingCity","TId":18,"Nul":1,"S":40},{"SN":"BillingState","TId":18,"Nul":1,"S":40},{"SN":"BillingCountry","TId":18,"Nul":1,"S":40},{"SN":"BillingPostalCode","TId":18,"Nul":1,"S":10},{"SN":"Total","TId":9}],"NPs":[{"N":"Customer","Mul":"1","End":2},{"FKId":1,"N":"InvoiceLines","Mul":"*","End":1}]},
-                {"SN":"InvoiceLine","HId":1,"PK":{"N":"PK__InvoiceL__0D760AD91DE57479","Ps":[{"N":"InvoiceLineId"}]},"Ps":[{"SN":"InvoiceLineId","TId":13,"Ide":1},{"SN":"InvoiceId","TId":13},{"SN":"TrackId","TId":13},{"SN":"UnitPrice","TId":9},{"SN":"Quantity","TId":13}],"NPs":[{"FKId":1,"N":"Invoice","Mul":"1","End":2},{"FKId":2,"N":"Track","Mul":"1","End":2}]}
+                {"SN":"InvoiceLine","HId":1,"PK":{"N":"PK__InvoiceL__0D760AD91DE57479","Ps":[{"N":"InvoiceLineId"}]},"Ps":[{"SN":"InvoiceLineId","TId":13,"Ide":1},{"SN":"InvoiceId","TId":13},{"SN":"TrackId","TId":13},{"SN":"UnitPrice","TId":9},{"SN":"Quantity","TId":13}],"NPs":[{"FKId":1,"N":"Invoice","Mul":"1","End":2},{"FKId":2,"N":"Track","Mul":"1","End":2}]},
+                {"SN":"OrderDetail","HId":1,"PK":{"N":"PK_OrderDetail","Ps":[{"N":"Id"},{"N":"SubId"}]},"Ps":[{"SN":"Id","TId":13,"Ide":1},{"SN":"SubId","TId":32,"S":50},{"SN":"Name","TId":32,"S":25}],"UKs":[{"N":"UK_OrderDetail_Name","Ps":[{"N":"Name"}]}]}
               ]
             },
             {

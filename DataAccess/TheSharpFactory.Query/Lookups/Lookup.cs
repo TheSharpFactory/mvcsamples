@@ -30,10 +30,11 @@ namespace TheSharpFactory.Query
     {
         //key is MetadataToken of the PropEnum type, the value is a Hashset of ints that represent the int value of the PropEnum choice.
         #region NullableProps
-        internal static readonly Dictionary<int, HashSet<int>> NullableProps = new Dictionary<int, HashSet<int>>(92)
+        internal static readonly Dictionary<int, HashSet<int>> NullableProps = new Dictionary<int, HashSet<int>>(93)
         {
             {typeof(MainDbE.Accounting.InvoiceProperty).MetadataToken, new HashSet<int>(9){(int)MainDbE.Accounting.InvoiceProperty.BillingAddress,(int)MainDbE.Accounting.InvoiceProperty.BillingCity,(int)MainDbE.Accounting.InvoiceProperty.BillingState,(int)MainDbE.Accounting.InvoiceProperty.BillingCountry,(int)MainDbE.Accounting.InvoiceProperty.BillingPostalCode,}},
             {typeof(MainDbE.Accounting.InvoiceLineProperty).MetadataToken, new HashSet<int>(5){}},
+            {typeof(MainDbE.Accounting.OrderDetailProperty).MetadataToken, new HashSet<int>(3){}},
             {typeof(MainDbE.Media.AlbumProperty).MetadataToken, new HashSet<int>(3){}},
             {typeof(MainDbE.Media.ArtistProperty).MetadataToken, new HashSet<int>(2){}},
             {typeof(MainDbE.Media.GenreProperty).MetadataToken, new HashSet<int>(2){}},
@@ -116,10 +117,11 @@ namespace TheSharpFactory.Query
         };
         #endregion
         #region PropTypes
-        internal static readonly Dictionary<int, Dictionary<int, Type>> PropTypes = new Dictionary<int, Dictionary<int, Type>>(92)
+        internal static readonly Dictionary<int, Dictionary<int, Type>> PropTypes = new Dictionary<int, Dictionary<int, Type>>(93)
         {
             {typeof(MainDbE.Accounting.InvoiceProperty).MetadataToken, new Dictionary<int, Type>(9){ {(int)MainDbE.Accounting.InvoiceProperty.InvoiceId, typeof(int)}, {(int)MainDbE.Accounting.InvoiceProperty.CustomerId, typeof(int)}, {(int)MainDbE.Accounting.InvoiceProperty.InvoiceDate, typeof(DateTime)}, {(int)MainDbE.Accounting.InvoiceProperty.BillingAddress, typeof(string)}, {(int)MainDbE.Accounting.InvoiceProperty.BillingCity, typeof(string)}, {(int)MainDbE.Accounting.InvoiceProperty.BillingState, typeof(string)}, {(int)MainDbE.Accounting.InvoiceProperty.BillingCountry, typeof(string)}, {(int)MainDbE.Accounting.InvoiceProperty.BillingPostalCode, typeof(string)}, {(int)MainDbE.Accounting.InvoiceProperty.Total, typeof(decimal)},}},
             {typeof(MainDbE.Accounting.InvoiceLineProperty).MetadataToken, new Dictionary<int, Type>(5){ {(int)MainDbE.Accounting.InvoiceLineProperty.InvoiceLineId, typeof(int)}, {(int)MainDbE.Accounting.InvoiceLineProperty.InvoiceId, typeof(int)}, {(int)MainDbE.Accounting.InvoiceLineProperty.TrackId, typeof(int)}, {(int)MainDbE.Accounting.InvoiceLineProperty.UnitPrice, typeof(decimal)}, {(int)MainDbE.Accounting.InvoiceLineProperty.Quantity, typeof(int)},}},
+            {typeof(MainDbE.Accounting.OrderDetailProperty).MetadataToken, new Dictionary<int, Type>(3){ {(int)MainDbE.Accounting.OrderDetailProperty.Id, typeof(int)}, {(int)MainDbE.Accounting.OrderDetailProperty.SubId, typeof(string)}, {(int)MainDbE.Accounting.OrderDetailProperty.Name, typeof(string)},}},
             {typeof(MainDbE.Media.AlbumProperty).MetadataToken, new Dictionary<int, Type>(3){ {(int)MainDbE.Media.AlbumProperty.AlbumId, typeof(int)}, {(int)MainDbE.Media.AlbumProperty.Title, typeof(string)}, {(int)MainDbE.Media.AlbumProperty.ArtistId, typeof(int)},}},
             {typeof(MainDbE.Media.ArtistProperty).MetadataToken, new Dictionary<int, Type>(2){ {(int)MainDbE.Media.ArtistProperty.ArtistId, typeof(int)}, {(int)MainDbE.Media.ArtistProperty.Name, typeof(string)},}},
             {typeof(MainDbE.Media.GenreProperty).MetadataToken, new Dictionary<int, Type>(2){ {(int)MainDbE.Media.GenreProperty.GenreId, typeof(int)}, {(int)MainDbE.Media.GenreProperty.Name, typeof(string)},}},
@@ -202,10 +204,11 @@ namespace TheSharpFactory.Query
         };
         #endregion
         #region BinaryProps
-        internal static readonly Dictionary<int, HashSet<int>> BinaryProps = new Dictionary<int, HashSet<int>>(92)
+        internal static readonly Dictionary<int, HashSet<int>> BinaryProps = new Dictionary<int, HashSet<int>>(93)
         {
             {typeof(MainDbE.Accounting.InvoiceProperty).MetadataToken, new HashSet<int>(9){}},
             {typeof(MainDbE.Accounting.InvoiceLineProperty).MetadataToken, new HashSet<int>(5){}},
+            {typeof(MainDbE.Accounting.OrderDetailProperty).MetadataToken, new HashSet<int>(3){}},
             {typeof(MainDbE.Media.AlbumProperty).MetadataToken, new HashSet<int>(3){}},
             {typeof(MainDbE.Media.ArtistProperty).MetadataToken, new HashSet<int>(2){}},
             {typeof(MainDbE.Media.GenreProperty).MetadataToken, new HashSet<int>(2){}},

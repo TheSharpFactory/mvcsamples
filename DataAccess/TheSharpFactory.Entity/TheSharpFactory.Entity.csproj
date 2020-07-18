@@ -46,8 +46,10 @@
     <Compile Include="MainDb\Accounting\InvoiceLine.cs" />
     <Compile Include="MainDb\Accounting\NavPropertyEnums\InvoiceLineNavProperty.cs" />
     <Compile Include="MainDb\Accounting\NavPropertyEnums\InvoiceNavProperty.cs" />
+    <Compile Include="MainDb\Accounting\OrderDetail.cs" />
     <Compile Include="MainDb\Accounting\PropertyEnums\InvoiceLineProperty.cs" />
     <Compile Include="MainDb\Accounting\PropertyEnums\InvoiceProperty.cs" />
+    <Compile Include="MainDb\Accounting\PropertyEnums\OrderDetailProperty.cs" />
     <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoice.cs" />
     <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoiceLine.cs" />
     <Compile Include="MainDb\Accounting\StoredProcs\CheckInvoiceLine_Request.cs" />

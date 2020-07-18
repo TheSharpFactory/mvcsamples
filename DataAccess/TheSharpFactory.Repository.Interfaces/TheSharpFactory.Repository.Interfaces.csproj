@@ -48,6 +48,7 @@
     <Compile Include="Container\MainDb\People\ISchemaRepositoryContainer.cs" />
     <Compile Include="MainDb\Accounting\IInvoiceLineRepository.cs" />
     <Compile Include="MainDb\Accounting\IInvoiceRepository.cs" />
+    <Compile Include="MainDb\Accounting\IOrderDetailRepository.cs" />
     <Compile Include="MainDb\Accounting\StoredProcs\IStoredProcRepository.cs" />
     <Compile Include="MainDb\Media\IAlbumRepository.cs" />
     <Compile Include="MainDb\Media\IArtistRepository.cs" />

@@ -28,6 +28,7 @@ namespace TheSharpFactory.Repository.Container.Interfaces.MainDb.Accounting
         #region Entity Repositories
         IInvoiceRepository Invoice { get; set; }
         IInvoiceLineRepository InvoiceLine { get; set; }
+        IOrderDetailRepository OrderDetail { get; set; }
         #endregion
         #region Store Procedure Repository
         IStoredProcRepository StoredProcs { get; set; }

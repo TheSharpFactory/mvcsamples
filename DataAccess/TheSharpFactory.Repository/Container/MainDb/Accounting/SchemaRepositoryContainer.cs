@@ -30,6 +30,7 @@ namespace TheSharpFactory.Repository.Container.MainDb.Accounting
         #region Entity Repositories
         public IInvoiceRepository Invoice { get; set; }
         public IInvoiceLineRepository InvoiceLine { get; set; }
+        public IOrderDetailRepository OrderDetail { get; set; }
         #endregion
         #region Store Procedure Repository
         public IStoredProcRepository StoredProcs { get; set; }
@@ -39,6 +40,7 @@ namespace TheSharpFactory.Repository.Container.MainDb.Accounting
             #region Entity Repositories
             Invoice = new InvoiceRepository();
             InvoiceLine = new InvoiceLineRepository();
+            OrderDetail = new OrderDetailRepository();
             #endregion
             #region Store Procedure Repository
             StoredProcs = new StoredProcRepository();
