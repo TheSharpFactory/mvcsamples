@@ -20,21 +20,21 @@ namespace TheSharpFactory.Web
     public class Startup
     {
         private static bool _isDev = false;
-        private static string _logDir = "C:\\Logs"
-            ;
+        private static string _logDir = "C:\\Logs";
+
+        private readonly IConfiguration Configuration;
+
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             _isDev = env.IsDevelopment();
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //register the model connection string.  one per model in the model container
-            Database.RegisterModelConnectionString(RepoLookup.ModelId.MainDb, "Data Source=SHARPFACTORY2;Initial Catalog=Chinook;Integrated Security=true;Application Name=MediaStoreApi");
+            //Register the model connection string. One per model in the model container
+            Database.RegisterModelConnectionString(RepoLookup.ModelId.MainDb, Configuration.GetConnectionString("ChinookContext"));
 
             //Inject the Repository created by The Sharp Factory
             services.AddSingleton<IRepositoryContainer, RepositoryContainer>();
