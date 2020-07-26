@@ -95,6 +95,7 @@ namespace TheSharpFactory.Web
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
         private static void ConfigureJsonOptions(JsonSerializerSettings settings)
         {
             settings.ContractResolver = new DefaultContractResolver();
