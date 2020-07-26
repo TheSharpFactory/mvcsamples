@@ -19,7 +19,7 @@ namespace TheSharpFactory.Web
 {
     public class Startup
     {
-        private static bool _isDev = false;
+        private readonly IWebHostEnvironment _env;
         private static string _logDir = "C:\\Logs";
 
         private readonly IConfiguration Configuration;
@@ -27,7 +27,7 @@ namespace TheSharpFactory.Web
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
-            _isDev = env.IsDevelopment();
+            _env = env;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -39,7 +39,7 @@ namespace TheSharpFactory.Web
             //Inject the Repository created by The Sharp Factory
             services.AddSingleton<IRepositoryContainer, RepositoryContainer>();
 
-            if(_isDev)
+            if (_env.IsDevelopment())
             {
                 //setup logging
                 //this will write the SQL Queries to a file or other media
@@ -52,19 +52,25 @@ namespace TheSharpFactory.Web
             }
 
             //add controllers and configure json
-            services.AddControllersWithViews()
-               .AddNewtonsoftJson(settings => ConfigureJsonOptions(settings.SerializerSettings))
-               .AddJsonOptions(jsonOptions =>
-               {
-                   jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;//swagger seems off without this line
-                   jsonOptions.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
-               });
+            var mvcBuilder = services.AddControllersWithViews();
+            mvcBuilder.AddNewtonsoftJson(settings => ConfigureJsonOptions(settings.SerializerSettings))
+                .AddJsonOptions(jsonOptions =>
+                {
+                    jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;//swagger seems off without this line
+                    jsonOptions.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
+                });
+            
+            // When develpment, add following to allow pages are refreshed when views are changed
+            if (_env.IsDevelopment())
+            {
+                mvcBuilder.AddRazorRuntimeCompilation();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -82,7 +88,7 @@ namespace TheSharpFactory.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "areas", 
+                    name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
