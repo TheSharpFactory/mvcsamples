@@ -43,7 +43,7 @@ namespace TheSharpFactory.Web
             {
                 //setup logging
                 //this will write the SQL Queries to a file or other media
-                Database.LogEnabled = true;
+                Database.LogEnabled = false;
                 /*                 
                  *  WriteLog is a function defined by the developer to write the log
                  *  to the destination of his/her choosing                 
