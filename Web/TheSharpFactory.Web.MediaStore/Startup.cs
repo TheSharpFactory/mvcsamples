@@ -19,31 +19,31 @@ namespace TheSharpFactory.Web
 {
     public class Startup
     {
-        private static bool _isDev = false;
-        private static string _logDir = "C:\\Logs"
-            ;
+        private readonly IWebHostEnvironment _env;
+        private static string _logDir = "C:\\Logs";
+
+        private readonly IConfiguration Configuration;
+
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
-            _isDev = env.IsDevelopment();
+            _env = env;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //register the model connection string.  one per model in the model container
-            Database.RegisterModelConnectionString(RepoLookup.ModelId.MainDb, "Data Source=SHARPFACTORY2;Initial Catalog=Chinook;Integrated Security=true;Application Name=MediaStoreApi");
+            //Register the model connection string. One per model in the model container
+            Database.RegisterModelConnectionString(RepoLookup.ModelId.MainDb, Configuration.GetConnectionString("ChinookContext"));
 
             //Inject the Repository created by The Sharp Factory
             services.AddSingleton<IRepositoryContainer, RepositoryContainer>();
 
-            if(_isDev)
+            if (_env.IsDevelopment())
             {
                 //setup logging
                 //this will write the SQL Queries to a file or other media
-                Database.LogEnabled = true;
+                Database.LogEnabled = false;
                 /*                 
                  *  WriteLog is a function defined by the developer to write the log
                  *  to the destination of his/her choosing                 
@@ -52,19 +52,25 @@ namespace TheSharpFactory.Web
             }
 
             //add controllers and configure json
-            services.AddControllersWithViews()
-               .AddNewtonsoftJson(settings => ConfigureJsonOptions(settings.SerializerSettings))
-               .AddJsonOptions(jsonOptions =>
-               {
-                   jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;//swagger seems off without this line
-                   jsonOptions.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
-               });
+            var mvcBuilder = services.AddControllersWithViews();
+            mvcBuilder.AddNewtonsoftJson(settings => ConfigureJsonOptions(settings.SerializerSettings))
+                .AddJsonOptions(jsonOptions =>
+                {
+                    jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;//swagger seems off without this line
+                    jsonOptions.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
+                });
+            
+            // When develpment, add following to allow pages are refreshed when views are changed
+            if (_env.IsDevelopment())
+            {
+                mvcBuilder.AddRazorRuntimeCompilation();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -82,13 +88,14 @@ namespace TheSharpFactory.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "areas", 
+                    name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
         private static void ConfigureJsonOptions(JsonSerializerSettings settings)
         {
             settings.ContractResolver = new DefaultContractResolver();

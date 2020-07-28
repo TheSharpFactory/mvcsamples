@@ -54,7 +54,6 @@ namespace TheSharpFactory.Web.Areas.People.Controllers
             _repository.MainDb.People.Customer.Create(customer);
 
             //by now the customerid property is populated           
-
             return LocalRedirect("~/People/Customer/Details?customerId=" + customer.CustomerId.ToString());
         }
 
