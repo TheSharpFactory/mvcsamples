@@ -21,7 +21,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             _repository = repository;
         }
 
-        // GET: AlbumsController
+        // GET: Albums
         public ActionResult Index()
         {
             var query = new Query<AlbumProperty, AlbumNavProperty>()
@@ -32,7 +32,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return View(model);
         }
 
-        // GET: AlbumsController/Details/5
+        // GET: Albums/Details/5
         public ActionResult Details(int id)
         {
             var model = _repository.MainDb.Media.Album.ByPK(id);
@@ -40,13 +40,13 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return View(model);
         }
 
-        // GET: AlbumsController/Create
+        // GET: Albums/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: AlbumsController/Create
+        // POST: Albums/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Album album)
@@ -56,7 +56,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: AlbumsController/Edit/5
+        // GET: Albums/Edit/5
         public ActionResult Edit(int id)
         {
             var model = _repository.MainDb.Media.Album.ByPK(id);
@@ -64,7 +64,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return View(model);
         }
 
-        // POST: AlbumsController/Edit/5
+        // POST: Albums/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Album album)
@@ -77,7 +77,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: AlbumsController/Delete/5
+        // GET: Albums/Delete/5
         public ActionResult Delete(int id)
         {
             var model = _repository.MainDb.Media.Album.ByPK(id);
@@ -85,7 +85,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return View(model);
         }
 
-        // POST: AlbumsController/Delete/5
+        // POST: Albums/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Album album)
