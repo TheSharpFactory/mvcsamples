@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TheSharpFactory.Entity.MainDb.Media.Album>
+﻿@model IEnumerable<TheSharpFactory.Web.Models.AlbumViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,7 +28,7 @@
                 @(item.Title.Length < 50 ? item.Title : item.Title.Substring(0, 50)+ "...")
             </td>
             <td>
-                @(item.Artist.Name.Length < 50 ? item.Artist.Name : item.Artist.Name.Substring(0, 50)+ "...")
+                @(item.Artist.Length < 50 ? item.Artist : item.Artist.Substring(0, 50)+ "...")
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }) |

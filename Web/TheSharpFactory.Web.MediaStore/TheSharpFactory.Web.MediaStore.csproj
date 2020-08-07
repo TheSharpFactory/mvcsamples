@@ -21,4 +21,8 @@
     <ProjectReference Include="..\..\DataAccess\TheSharpFactory.Repository\TheSharpFactory.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
 </Project>

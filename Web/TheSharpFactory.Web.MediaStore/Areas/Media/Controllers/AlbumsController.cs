@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using TheSharpFactory.Entity.MainDb.Media;
 using TheSharpFactory.Query;
 using TheSharpFactory.Repository.Container.Interfaces;
+using TheSharpFactory.Web.Models;
 
 namespace TheSharpFactory.Web.Areas.Media.Controllers
 {
@@ -29,13 +30,14 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
                     .Append(AlbumNavProperty.Artist)
                 .EndNavProps();
             var model = _repository.MainDb.Media.Album.ToList(query);
-            return View(model);
+            var viewModel = ToViewModel(model);
+            return View(viewModel);
         }
 
         // GET: Albums/Details/5
         public ActionResult Details(int id)
         {
-            var model = _repository.MainDb.Media.Album.ByPK(id);
+            var model = _repository.MainDb.Media.Album.ByPK(id, new NavProps<AlbumNavProperty> {AlbumNavProperty.Artist});
 
             return View(model);
         }
@@ -77,7 +79,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Albums/Delete/5
+        // GET: AlbumsController/Delete/5
         public ActionResult Delete(int id)
         {
             var model = _repository.MainDb.Media.Album.ByPK(id);
@@ -85,7 +87,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return View(model);
         }
 
-        // POST: Albums/Delete/5
+        // POST: AlbumsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Album album)
@@ -93,6 +95,30 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             _repository.MainDb.Media.Album.Delete(album);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        private List<AlbumViewModel> ToViewModel(List<Album> model)
+        {
+            var viewModel = new List<AlbumViewModel>();
+            foreach (var item in model)
+            {
+                viewModel.Add(new AlbumViewModel()
+                {
+                    AlbumId = item.AlbumId,
+                    Title = item.Title,
+                    Artist = item.Artist.Name
+                });
+            }
+            return viewModel;
+        }
+
+        private AlbumViewModel ToViewModel(Album model)
+        {
+            var viewModel = new AlbumViewModel();
+            viewModel.AlbumId = model.AlbumId;
+            viewModel.Title = model.Title; ;
+            viewModel.Artist = model.Artist.Name;
+            return viewModel;
         }
     }
 }
