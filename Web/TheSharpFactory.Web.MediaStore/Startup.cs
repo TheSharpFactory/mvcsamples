@@ -1,4 +1,5 @@
 #region Usings
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using TheSharpFactory.Repository.Common;
@@ -53,13 +55,19 @@ namespace TheSharpFactory.Web
 
             //add controllers and configure json
             var mvcBuilder = services.AddControllersWithViews();
+
+            mvcBuilder.AddFluentValidation(opt =>
+                {
+                    opt.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                });
+
             mvcBuilder.AddNewtonsoftJson(settings => ConfigureJsonOptions(settings.SerializerSettings))
                 .AddJsonOptions(jsonOptions =>
                 {
                     jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;//swagger seems off without this line
                     jsonOptions.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
                 });
-            
+
             // When develpment, add following to allow pages are refreshed when views are changed
             if (_env.IsDevelopment())
             {
