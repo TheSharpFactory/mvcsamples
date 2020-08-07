@@ -11,8 +11,10 @@ namespace TheSharpFactory.Web.Validators
     {
         public CustomerValidator()
         {
-            RuleFor(c => c.FirstName).NotEmpty();
+            RuleFor(c => c.FirstName).NotEmpty().WithName("First Name");
+            //RuleFor(c => c.FirstName).NotEmpty().WithName("First Name");
             RuleFor(c => c.LastName).NotEmpty();
+            //RuleFor(c => c.SupportRepId).GreaterThan(10);
         }
 
     }
