@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TheSharpFactory.Web.Models.AlbumViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<h1>Album List</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary btn-lg">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @(item.Title.Length < 50 ? item.Title : item.Title.Substring(0, 50)+ "...")
+            </td>
+            <td>
+                @(item.Artist.Length < 50 ? item.Artist : item.Artist.Substring(0, 50)+ "...")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AlbumId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,7 +1,9 @@
 ﻿#region Usings
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using TheSharpFactory.Entity.MainDb.People;
 using TheSharpFactory.Repository.Container.Interfaces;
+using TheSharpFactory.Web.Validators;
 #endregion
 
 namespace TheSharpFactory.Web.Areas.People.Controllers
@@ -51,9 +53,15 @@ namespace TheSharpFactory.Web.Areas.People.Controllers
         [HttpPost]
         public IActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            { 
+                // re-render the view when validation failed.
+                return View("Create", customer);
+            }
+
             _repository.MainDb.People.Customer.Create(customer);
 
-            //by now the customerid property is populated           
+            //by now the customerid property is populated 
             return LocalRedirect("~/People/Customer/Details?customerId=" + customer.CustomerId.ToString());
         }
 

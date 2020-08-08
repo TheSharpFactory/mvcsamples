@@ -20,18 +20,18 @@
                             Media
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Albums</a>
-                            <a class="dropdown-item" href="#">Artists</a>
+                            <a class="dropdown-item" asp-area="Media" asp-controller="Albums" asp-action="Index">Albums</a>
+                            <a class="dropdown-item" asp-area="Media" asp-controller="Artists" asp-action="Index">Artists</a>
                             @*<a class="dropdown-item" href="#">Genres</a>*@
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Playlists</a>
+                            <a class="dropdown-item" asp-area="Media" asp-controller="Playlists" asp-action="Index">Playlists</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="People" asp-controller="Customer" asp-action="Index">Customers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Invoices</a>
+                        <a class="nav-link" asp-area="Accounting" asp-controller="Invoices" asp-action="Index">Invoices</a>
                     </li>
                     @*<li class="nav-item">
                         <a class="nav-link" href="#">Employees</a>
