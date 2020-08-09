@@ -22,17 +22,26 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             _repository = repository;
         }
 
-        // GET: Albums
-        public ActionResult Index()
+        // GET: Albums/artistId
+        public ActionResult Index(int? id)
         {
             var query = new Query<AlbumProperty, AlbumNavProperty>()
                 .BeginNavProps()
                     .Append(AlbumNavProperty.Artist)
                 .EndNavProps();
+
+            if (id != null)
+            {
+                query = query
+                    .BeginPredicate()
+                    .Where(AlbumProperty.ArtistId).Equals(id)
+                    .EndPredicate();
+            }
             var model = _repository.MainDb.Media.Album.ToList(query);
             var viewModel = ToViewModel(model);
             return View(viewModel);
         }
+
 
         // GET: Albums/Details/5
         public ActionResult Details(int id)
