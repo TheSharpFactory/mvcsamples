@@ -16,6 +16,5 @@ namespace TheSharpFactory.Web.Validators
             RuleFor(c => c.LastName).NotEmpty();
             //RuleFor(c => c.SupportRepId).GreaterThan(10);
         }
-
     }
 }
