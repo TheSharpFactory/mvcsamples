@@ -9,12 +9,12 @@
 <p>
     <a asp-action="Create" class="btn btn-primary btn-lg">Create New</a>
 </p>
-<table class="table">
+<table id="artistsTable" class="table">
     <thead>
         <tr>
             @*<th>
-                @Html.DisplayNameFor(model => model.ArtistId)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.ArtistId)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -23,23 +23,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ArtistId)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ArtistId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
-            </td>
-            <td>
-                @Html.ActionLink("Albums", "Index", "Albums", new { id = item.ArtistId }, new { @class = "text-success" })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ArtistId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ArtistId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
+                </td>
+                <td>
+                    @Html.ActionLink("Albums", "Index", "Albums", new { id = item.ArtistId }, new { @class = "text-success" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#artistsTable').DataTable({
+                "columnDefs": [{
+                    "targets": [1,2],
+                    "sortable": false,
+                    "searchable": false
+                }],  
+            });
+        });
+    </script>
+}
