@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TheSharpFactory.Entity.MainDb.Media.Playlist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<h1>Playlists</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+            @Html.DisplayNameFor(model => model.PlaylistId)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.PlaylistId)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PlaylistId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PlaylistId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PlaylistId })
+            </td>
+            <td>
+                @Html.ActionLink("Tracks", "Index", "Tracks", new { id = item.PlaylistId }, new { @class = "text-success" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

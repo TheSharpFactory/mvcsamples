@@ -23,23 +23,22 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
         }
 
         // GET: Albums/artistId
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? artistId)
         {
             var query = new Query<AlbumProperty, AlbumNavProperty>()
                 .BeginNavProps()
                     .Append(AlbumNavProperty.Artist)
                 .EndNavProps();
 
-            if (id != null)
+            if (artistId != null)
             {
                 query = query
                     .BeginPredicate()
-                    .Where(AlbumProperty.ArtistId).Equals(id)
+                    .Where(AlbumProperty.ArtistId).Equals(artistId)
                     .EndPredicate();
             }
             var model = _repository.MainDb.Media.Album.ToList(query);
-            var viewModel = ToViewModel(model);
-            return View(viewModel);
+            return View(model);
         }
 
 
@@ -106,6 +105,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        #region ViewModels
         private List<AlbumViewModel> ToViewModel(List<Album> model)
         {
             var viewModel = new List<AlbumViewModel>();
@@ -128,6 +128,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             viewModel.Title = model.Title; ;
             viewModel.Artist = model.Artist.Name;
             return viewModel;
-        }
+        } 
+        #endregion
     }
 }
