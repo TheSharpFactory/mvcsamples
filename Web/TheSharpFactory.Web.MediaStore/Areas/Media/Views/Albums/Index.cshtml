@@ -26,24 +26,28 @@ else
                 Artist @Html.DisplayNameFor(model => model.Artist.Name)
             </th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @(item.Title.Length < 50 ? item.Title : item.Title.Substring(0, 50) + "...")
-                </td>
-                <td>
-                    @(item.Artist.Name.Length < 50 ? item.Artist.Name : item.Artist.Name.Substring(0, 50) + "...")
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.AlbumId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @(item.Title.Length < 50 ? item.Title : item.Title.Substring(0, 50) + "...")
+            </td>
+            <td>
+                @(item.Artist.Name.Length < 50 ? item.Artist.Name : item.Artist.Name.Substring(0, 50) + "...")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AlbumId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId })
+            </td>
+            <td>
+                @Html.ActionLink("Tracks", "Index", "Tracks", new { id = item.AlbumId, albumId = item.AlbumId }, new { @class = "text-success" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

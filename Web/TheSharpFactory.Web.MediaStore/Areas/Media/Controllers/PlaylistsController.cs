@@ -57,7 +57,7 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
         {
             var model = _repository.MainDb.Media.Playlist.ByPK(id);
 
-            return View();
+            return View(model);
         }
 
         // POST: PlaylistsController/Edit/5

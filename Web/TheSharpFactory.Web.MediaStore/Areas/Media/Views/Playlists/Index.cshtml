@@ -37,7 +37,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.PlaylistId })
             </td>
             <td>
-                @Html.ActionLink("Tracks", "Index", "Tracks", new { id = item.PlaylistId }, new { @class = "text-success" })
+                @Html.ActionLink("Tracks", "Index", "Tracks", new { id = item.PlaylistId, playlistId = item.PlaylistId }, new { @class = "text-success" })
             </td>
         </tr>
 }
