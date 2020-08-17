@@ -104,31 +104,5 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        #region ViewModels
-        private List<AlbumViewModel> ToViewModel(List<Album> model)
-        {
-            var viewModel = new List<AlbumViewModel>();
-            foreach (var item in model)
-            {
-                viewModel.Add(new AlbumViewModel()
-                {
-                    AlbumId = item.AlbumId,
-                    Title = item.Title,
-                    Artist = item.Artist.Name
-                });
-            }
-            return viewModel;
-        }
-
-        private AlbumViewModel ToViewModel(Album model)
-        {
-            var viewModel = new AlbumViewModel();
-            viewModel.AlbumId = model.AlbumId;
-            viewModel.Title = model.Title; ;
-            viewModel.Artist = model.Artist.Name;
-            return viewModel;
-        } 
-        #endregion
     }
 }
