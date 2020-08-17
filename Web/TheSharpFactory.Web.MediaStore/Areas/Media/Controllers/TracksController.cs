@@ -51,12 +51,11 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
                     .BeginPredicate()
                         .Where(PlaylistTrackProperty.PlaylistId).Equals(playlistId)
                     .EndPredicate();
-                model = _repository.MainDb.Media.PlaylistTrack.ToList(queryPlaylist).Select(x => x.Track).ToList();
-            }
-
-            if (model == null)
-            {
-                return NotFound();
+                var result = _repository.MainDb.Media.PlaylistTrack.ToList(queryPlaylist);
+                if (result != null)
+                {
+                    model = result.Select(x => x.Track).ToList();
+                }     
             }
 
             return View(model);

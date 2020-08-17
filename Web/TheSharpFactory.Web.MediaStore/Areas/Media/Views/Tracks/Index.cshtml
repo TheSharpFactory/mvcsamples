@@ -7,41 +7,51 @@
 <h1>Index</h1>
 <h1>Track List</h1>
 @*<p>
-    <a asp-action="Create" class="btn btn-primary btn-lg">Create New</a>
-</p>*@
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Composer)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Composer)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TrackId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TrackId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TrackId })
-            </td>
-        </tr>
+        <a asp-action="Create" class="btn btn-primary btn-lg">Create New</a>
+    </p>*@
+@if (Model == null)
+{
+    <div>No tracks found.</div>
 }
-    </tbody>
-</table>
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Composer)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Name)*@
+                        @(item.Name.Length < 50 ? item.Name : item.Name.Substring(0, 50) + "...")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Composer)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TrackId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TrackId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TrackId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

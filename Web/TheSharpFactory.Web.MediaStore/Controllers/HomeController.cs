@@ -10,7 +10,12 @@ namespace TheSharpFactory.Web.Controllers
         public IActionResult Index()
         {
             return View();
-        }       
+        }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
 
     }
 }
