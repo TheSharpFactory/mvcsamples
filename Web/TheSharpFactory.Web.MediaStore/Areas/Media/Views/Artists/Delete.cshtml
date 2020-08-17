@@ -26,6 +26,9 @@
     </dl>
     
     <form asp-action="Delete">
+        <div class="form-group">
+            <input type="hidden" asp-for="ArtistId" class="form-control" />
+        </div>
         <input type="submit" value="Delete" class="btn btn-danger btn-lg" />
         <a asp-action="Index" class="btn btn-secondary btn-lg">Back to List</a>
     </form>
