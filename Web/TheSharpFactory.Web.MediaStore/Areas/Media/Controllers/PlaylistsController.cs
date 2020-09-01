@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TheSharpFactory.Entity.MainDb.Media;
+using TheSharpFactory.Query;
 using TheSharpFactory.Repository.Container.Interfaces;
 
 namespace TheSharpFactory.Web.Areas.Media.Controllers
@@ -26,6 +28,35 @@ namespace TheSharpFactory.Web.Areas.Media.Controllers
             var model = _repository.MainDb.Media.Playlist.ToList();
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult GetList()
+        {
+            //Server Side Parameter
+            var form = HttpContext.Request.Form;
+            int start = Convert.ToInt32(form["start"]);
+            int length = Convert.ToInt32(form["length"]);
+            string searchValue = form["search[value]"];
+            string sortColumnName = form["columns[" + form["order[0][column]"] + "][name]"];
+            string sortDirection = form["order[0][dir]"];
+
+            var query = new Query<PlaylistProperty>()
+                .BeginPredicate()
+                    .Where(PlaylistProperty.Name).Like(searchValue)
+                .EndPredicate()
+                .BeginPagination()
+                    .PageNumber(start)
+                    .PageSize(length)
+                    .ReturnTotalCount(true)
+                .EndPagination()
+                .BeginSorting()
+                    .OrderBy(PlaylistProperty.Name)
+                .EndSorting();
+
+            var list = _repository.MainDb.Media.Playlist.ToList(query);
+
+            return Json(new { data = list, recordsTotal = query.RecordCount, recordsFiltered = query.RecordCount}, new JsonSerializerSettings());
         }
 
         // GET: PlaylistsController/Details/5

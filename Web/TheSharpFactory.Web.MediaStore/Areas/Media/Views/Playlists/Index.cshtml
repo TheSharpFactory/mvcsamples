@@ -9,37 +9,58 @@
 <p>
     <a asp-action="Create" class="btn btn-primary btn-lg">Create New</a>
 </p>
-<table class="table">
+
+<table id="playlistTable" class="ui celled table">
     <thead>
         <tr>
-            @*<th>
-            @Html.DisplayNameFor(model => model.PlaylistId)
-        </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-            <th></th>
+            <th>Name</th>
+            <th> </th>
+            <th> </th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
+    <tfoot>
         <tr>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.PlaylistId)
-        </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PlaylistId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PlaylistId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PlaylistId })
-            </td>
-            <td>
-                @Html.ActionLink("Tracks", "Index", "Tracks", new { id = item.PlaylistId, playlistId = item.PlaylistId }, new { @class = "text-success" })
-            </td>
+            <th>Name</th>
+            <th> </th>
+            <th> </th>
         </tr>
-}
-    </tbody>
+    </tfoot>
 </table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#playlistTable').DataTable({
+                "ajax": {
+                    "url": "/Media/Playlists/GetList",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Name", "Name": "Name" },
+                    {
+                        "data": "PlaylistId",
+                        render: function (data, type, row) {
+                            return "<a href=/Media/Playlists/Edit/" + data + ">Edit</a>"
+                                + " | " + "<a href=/Media/Playlists/Details/" + data + ">Details</a>"
+                                + " | " + "<a href=/Media/Playlists/Delete/" + data + ">Delete</a>";
+                        }
+                    },
+                    {
+                        "data": "PlaylistId",
+                        render: function (data, type, row) {
+                            return "<a class=\"text-success\" href=/Media/Tracks/Index/1?playlistId=" + data + ">Tracks</a>";
+                        }
+                    },
+                ],
+                "columnDefs": [{
+                    "targets": [1,2],
+                    "sortable": false,
+                    "searchable": false
+                }],
+                "serverSide": "true",
+                "processing": "true",
+            });
+        });
+    </script>
+}
