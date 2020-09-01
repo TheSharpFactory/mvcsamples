@@ -38,7 +38,7 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
                 </td>
                 <td>
-                    @Html.ActionLink("Albums", "Index", "Albums", new { id = item.ArtistId }, new { @class = "text-success" })
+                    @Html.ActionLink("Albums", "Index", "Albums", new { id = item.ArtistId, artistId = item.ArtistId }, new { @class = "text-success" })
                 </td>
             </tr>
         }

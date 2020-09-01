@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TheSharpFactory.Web.Models.AlbumViewModel>
+﻿@model IEnumerable<TheSharpFactory.Entity.MainDb.Media.Album>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,33 +9,47 @@
 <p>
     <a asp-action="Create" class="btn btn-primary btn-lg">Create New</a>
 </p>
+
+@if (Model == null)
+{
+    <div>No albums found.</div>
+}
+else
+{
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Album @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Artist)
+                Artist @Html.DisplayNameFor(model => model.Artist.Name)
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @(item.Title.Length < 50 ? item.Title : item.Title.Substring(0, 50)+ "...")
+                @(item.Title.Length < 50 ? item.Title : item.Title.Substring(0, 50) + "...")
             </td>
             <td>
-                @(item.Artist.Length < 50 ? item.Artist : item.Artist.Substring(0, 50)+ "...")
+                @(item.Artist.Name.Length < 50 ? item.Artist.Name : item.Artist.Name.Substring(0, 50) + "...")
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.AlbumId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId })
             </td>
+            <td>
+                @Html.ActionLink("Tracks", "Index", "Tracks", new { id = item.AlbumId, albumId = item.AlbumId }, new { @class = "text-success" })
+            </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+}
+
